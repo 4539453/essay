@@ -1,5 +1,7 @@
 ## Core latex/pdflatex auxiliary files:
-*.par*.tex
+*Chapter*.tex
+
+*.kilepr
 .kile/
 *.aux
 *.lof
