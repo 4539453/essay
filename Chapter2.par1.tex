@@ -1,0 +1,199 @@
+\section{Численный метод решения краевой задачи для уравнения $(ay'')'' = f$}
+\label{section:NumericalMethod:AuxiliaryProblem}
+%
+%
+%
+\begin{equation}
+\label{DE:4Order:F}
+(ay'')'' = f
+\end{equation}
+%
+%
+%
+\par
+Для численного решения задачи
+\eqref{DE:4Order:F}
+с соответствующими краевыми условиями
+будем использовать метод \textbf{\emph{матричной прогонки}}.
+%
+%
+%
+Для этого уравнение
+\eqref{DE:4Order:F}
+представим в виде следующей системы дифференциальных уравнений второго порядка:
+\begin{equation}
+\begin{cases}
+y''(x) = \displaystyle \frac{z(x)}{a(x)},
+\\
+z''(x) = f(x),
+\end{cases}
+\qquad
+x \in I.
+\end{equation}
+%
+%
+%
+%
+%
+\par
+Введем на отрезке
+\(0 \le x \le 1\)
+разностную сетку с постоянным шагом \(H\).
+%
+%
+%
+Узлы этой сетки будем обозначать через
+\(x_k = kH\),
+где
+\(k = 0, 1, \ldots, N\).
+%
+%
+%
+В свою очередь,
+значения функций
+\(y(x), z(x), a(x), f(x)\)
+в узлах
+будем обозначать через
+\(y_k, z_k, a_k, f_k\)
+соответственно.
+%
+%
+%
+ Функцию \(y(x)\) будем аппроксимировать разложив в ряд Тейлора слева \(y(x-h)\) и справа \(y(x+h)\) следующим видом
+	\begin{equation*}
+	y(x+h)=y(x) + \frac{y'(x)h}{1!} + \frac{y''(x)h^2}{2!} + \frac{y'''(x)h^3}{3!} + \ldots
+	\end{equation*}
+	\begin{equation}
+	y(x-h)=y(x) - \frac{y'(x)h}{1!} + \frac{y''(x)h^2}{2!} - \frac{y'''(x)h^3}{3!} + \ldots
+	\end{equation}
+	На выходе получаем следующее
+	\begin{equation*}
+	y(x+h)+y(x-h) = 2y(x)+y''(x)h^2 \quad \Rightarrow
+	\end{equation*}
+	\begin{equation}
+	\frac{y_{k+1}-2y_k+y_{k-1}}{h^2}=y''(x_k)=\frac{z_k}{U_k}
+	\end{equation}
+	Аналогично выполняем аппроксимацию \(z(x)\)
+	\begin{equation}
+	\frac{z_{k+1}-2z_k+z_{k-1}}{h^2}=f(k)
+	\end{equation}
+	Для дальнейшей матричной прогонки определим вектор
+	\(X_k= \left( \begin{matrix}
+	y_k\\z_k
+	\end{matrix} \right)\) 
+	и коэффициенты \(A_k,B_k,C_k\).
+	\begin{equation}
+	A_kX_{k+1}-B_kX_k+C_kX_{k-1}=F_k, \quad k=1\ldots N-1
+	\end{equation}
+	Выпишем полученную систему уравнений:
+	\begin{equation}
+	\begin{cases}
+	y_{k+1}-2y_k+y_{k-1} - \frac{z_kh^2}{U_k}=0 \\
+	z_{k+1}-2z_k+z_{k-1}=f(k)h^2 \\
+	F_k= \left( \begin{matrix}
+	0\\f(k)h^2
+	\end{matrix} \right)
+	\end{cases}
+	\end{equation}
+	Выразим матричное уравнение и выразим коэффициенты \(A_k,B_k,C_k\)
+	\begin{equation*}
+	\left( \begin{matrix}
+	1&0\\0&1
+	\end{matrix} \right)X_{k+1}-\left( \begin{matrix}2&\frac{h^2}{U_k}\\0&2\end{matrix}\right)X_k+
+	\left( \begin{matrix}1&0\\0&1\end{matrix}\right)X_{k-1}=F_k
+	\end{equation*}
+	\begin{equation}\label{eq4}
+	A_k=\left( \begin{matrix}1&0\\0&1\end{matrix} \right) \quad 
+	B_k=\left( \begin{matrix}2&\frac{h^2}{U_k}\\0&2\end{matrix} \right) \quad 
+	C_k=\left( \begin{matrix}1&0\\0&1\end{matrix} \right), \quad  A_k=C_k=E
+	\end{equation}
+	Для определения коэффициентов \(X_k\)~- необходимо рассмотреть обратный итерационный процесс
+	\begin{equation}\label{eq5}
+	X_k=L_{k+1}X_{k+1}+M_{k+1}
+	\end{equation}
+	Выведем формулы для коэффициентов \(L_k\) и \(M_k\)
+	\begin{equation*}
+	A_kX_{k+1}-B_kX_k+C_k(L_kX_k+M_k)=F_k
+	\end{equation*}
+	\begin{equation*}
+	A_kX_{k+1}+X_k(C_kL_k-B_k)=F_k-C_kM_k
+	\end{equation*}
+	\begin{equation*}
+	X_k=-(C_kL_k-B_k)^{-1}A_kX_{k+1}+(C_kL_k-B_k)^{-1}(F_k-C_kM_k)
+	\end{equation*}
+	\begin{equation}\label{eq6}
+	L_{k+1}=-(C_kL_k-B_k)^{-1}A_k
+	\end{equation}
+	\begin{equation}\label{eq7}
+	M_{k+1}=(C_kL_k-B_k)^{-1}(F_k-C_kM_k)
+	\end{equation}
+	Рассмотрим алгоритм метода матричной прогонки для трех возможных способов закрепления балки.
+	
+	\bigskip\quad Алгоритм:
+	\begin{enumerate}
+		\item Вычисляем коэффициенты \(A_k,B_k,C_k\) по формулам (\ref{eq4}) для\\ k=1\ldots N-1
+		\item Определяем граничные условия метода в соответствии с типом закрепления балки:
+		\begin{enumerate}
+			\item Балка свободно оперта на обоих концах свей длины.
+			
+			В данном случае краевыми условиями на обои концах \((x=0,x=l)\) являются следующие условия:
+			\begin{equation*}
+			y=y''=0|_{x=0}, \quad y=y''=0|_{x=l}
+			\end{equation*}
+			Исходя из этого, получим:
+			\begin{equation*}
+			L_0=\left( \begin{matrix}0&0\\0&0\end{matrix} \right),\quad
+			M_0=\left( \begin{matrix}0\\0\end{matrix} \right),
+			\end{equation*}
+			\begin{equation*}
+			L_n=\left( \begin{matrix}0&0\\0&0\end{matrix} \right),\quad
+			M_n=\left( \begin{matrix}0\\0\end{matrix} \right),\quad,
+			X_n=\left( \begin{matrix}0\\0\end{matrix} \right)
+			\end{equation*}
+			\item Балка жестко закреплена на обоих концах.\\
+		
+			
+			В данном случае краевыми условиями на обоих концах \\\((x=0,x=l)\) являются следущие условия:
+			\begin{equation*}
+			y=y'=0|_{x=0}, \quad y=y'=0|_{x=l}
+			\end{equation*}
+			Исходя из этого, получим:
+			\begin{equation*}
+			L_0=\left( \begin{matrix}0&0\\\frac{2U_0}{h^2}&0\end{matrix} \right),\quad
+			M_0=\left( \begin{matrix}0\\0\end{matrix} \right),
+			\end{equation*}
+			Вычислим \(X_n\):
+			\begin{equation*}
+			X_{n-1}=L_nX_n+M_n,\quad y_{n-1}=\frac{h^2z_n}{2U_0};
+			\end{equation*}
+			\begin{equation*}
+			X_{n-1}=\left(\begin{matrix}0&\frac{h^2}{2U_0}\\0&0\end{matrix}\right)\left(\begin{matrix}y_n\\z_n\end{matrix}\right)+\left(\begin{matrix}0\\0\end{matrix}\right);
+			\end{equation*}
+			\begin{equation*}
+			\left(\begin{matrix}l_{11}&l_{12}\\l_{21}&l_{22}\end{matrix}\right)\left(\begin{matrix}y_n\\z_n\end{matrix}\right)+\left(\begin{matrix}m_1\\m_2\end{matrix}\right)=\left(\begin{matrix}0&\frac{h^2}{2U_0}\\0&0\end{matrix}\right)\left(\begin{matrix}y_n\\z_n\end{matrix}\right);
+			\end{equation*}
+			\begin{equation*}
+			\left(\begin{matrix}l_{11}&l_{12}-\frac{h^2}{2U_0}\\l_{21}&l_{22}\end{matrix}\right)\left(\begin{matrix}y_n\\z_n\end{matrix}\right)=\left(\begin{matrix}m_1\\m_2\end{matrix}\right);
+			\end{equation*}
+			\begin{equation*}
+			X_n=-\left(\begin{matrix}l_{11}&l_{12}-\frac{h^2}{2U_0}\\l_{21}&l_{22}\end{matrix}\right)^{-1}\left(\begin{matrix}m_1\\m_2\end{matrix}\right);
+			\end{equation*}
+			\item Балка жестко закреплена на одном конце и оперта на другом.
+					
+			В данном случае краевыми условиями на обои концах \((x=0,x=l)\) являются следующие условия:
+			\begin{equation*}
+			y=y'=0|_{x=0}, \quad y=y'=0|_{x=l}
+			\end{equation*}
+			Исходя из этого, получим:
+			\begin{equation*}
+			L_0=\left( \begin{matrix}0&0\\\frac{2U_0}{h^2}&0\end{matrix} \right),\quad
+			M_0=\left( \begin{matrix}0\\0\end{matrix} \right),
+			\end{equation*}
+			\begin{equation*}
+			X_N=\left( \begin{matrix}0\\0\end{matrix} \right).
+			\end{equation*}
+		\end{enumerate}
+		\item Вычисляем  коэффициенты \(L_k,M_k\) по формулам (\ref{eq6}) и (\ref{eq7}) для\\ k=1\ldots N-1.
+		\item Начиная с \(k=N-1~\text{до}~k=0~\text{вычисляем векторы}~X_k\) по формуле (\ref{eq5}). 
+		\item Получив значения \(X-k\), получаем значения \(y_k\text{ и } z_k\).
+	\end{enumerate}

@@ -1,0 +1,52 @@
+\section{Численный метод решения задачи о поперечных колебаниях балки}
+\label{section:NumericalMethod:EVP}
+
+\begin{equation*}  
+(Uy'')''=\lambda Vy
+\end{equation*}
+Полученное решение краевой задачи  \(y_{(n)}\) используем для определения следующего приближения безрезонансного интервала:
+\begin{equation*}  
+(Uy_{(n+1)}'')''=f=Vy_{(n)}
+\end{equation*}
+%
+%
+%
+%
+Вариационное представление
+\eqref{FirstEigenvalue:VariationalPrinciple}
+первого собственного значения $\lambda_1[u]$
+определяем следущим \emph{\textbf{отношением Рэлея}}:
+%
+%
+%
+%
+\begin{equation*}  
+\lambda_1^{(n)}=\frac{\int_{0}^{1}Uy_{(n)}''^2dx}{\int_{0}^{1}Vy_{(n)}^2dx},
+\end{equation*}
+\begin{equation*}  
+Uy_{(n)}''^2=\frac{1}{U}(Uy_{(n)}''^2)^2=\frac{1}{U}z^2,
+\end{equation*}
+\begin{equation}\label{eq9}   
+\lambda_1^{(n)}=\frac{\int_{0}^{1}\frac{1}{U}z_{(n)}^2dx}{\int_{0}^{1}Vy_{(n)}^2dx}.
+\end{equation}
+
+
+Решение уравнения (\ref{eq9}) находим методом трапеций\\
+\begin{equation}\label{eq10} 
+\int_a^bf(x)\approx\frac{h}{2}(f(x_0)+2\sum\limits_{i=1}^{n-1} f(x_i) +f(x_n),
+\end{equation}
+\begin{equation*}  
+h=\frac{b-a}{n}=1 \quad  x_i=a+ih \quad  i=0,1\ldots n,
+\end{equation*}
+\begin{center}  
+\(i=0 \quad x_0+0*1\quad \Rightarrow\quad f(x_0)=Vy^2\bigg|_0\)\\
+\(i=1 \quad x_1+1*1\quad \Rightarrow\quad f(x_1)=Vy^2\bigg|_1\)\\
+\ldots\\
+\ldots\\
+\(i=n \quad x_n+1*n\quad \Rightarrow\quad f(x_n)=Vy^2\bigg|_n\)
+\end{center}
+\par
+Далее заносим значения под знак суммы (\ref{eq10}) и находим все собственные значения $\lambda_1[u]$ описывающее резонансное поведение в процессе колебания балки, в этом случае следующая погрешность и является показательной
+\begin{equation*}  
+|\lambda_1^{(n+1)} + \lambda_1^{(n)}|<\varepsilon\approx 10^{10}.
+\end{equation*}

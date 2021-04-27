@@ -1,0 +1,165 @@
+\documentclass[oneside,a4paper,14pt,final]{extreport}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage[compact]{titlesec}
+\usepackage{pgfplots}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                 %
+%             general page settings               %
+%                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[left=2.5cm,top=2cm,right=1.5cm,bottom=2cm]{geometry}
+\setlength\parindent{1.27cm} % paragraph indentation
+\setlength{\headheight}{17.0pt} % no matter, only because of Warnings
+\frenchspacing % pretty space length
+\sloppy % pretty line breaking
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                 %
+%  dots in table of content (problem with header) %
+%                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \usepackage{tocloft}
+% \renewcommand{\cftdotsep}{2}
+% \renewcommand{\cftchapleader}{\cftdotfill{\cftsecdotsep}}
+
+% !!! https://tex.stackexchange.com/questions/228729/how-to-hide-chapter-numbering-in-table-of-contents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                 %
+%            numbering on top of page             %
+%                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhf[rh]{\thepage} % right header
+\renewcommand\headrulewidth{0pt} % remove a rule beneath the header
+
+% \pagenumbering{gobble} % kill numberring
+% \pagestyle{empty} % remove numbering
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                 %
+%               chapter title format              %
+%                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titleformat{\chapter}[display]
+{}{}{0pt}
+{
+	\Large\filcenter\sc\bfseries
+}[{
+	\vspace{3pt}
+	\titlerule[1.5pt]
+}]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                 %
+%               section title format              %
+%                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titleformat{\section}[display]
+{
+	\centering\sc\bfseries
+}{}{0pt}{\thesection.\;}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                 %
+%             subsection title format             %
+%                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titleformat{\subsection}[display]
+{
+	\centering\sc\bfseries
+}{}{0pt}{\thesubsection.\;}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                 %
+%                  theorem style                  %
+%                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheoremstyle{TheoremStyle}
+{}                % Space above
+{}                % Space below
+{%\slshape
+}        % Theorem body font % (default is "\upshape")
+{}                % Indent amount
+{\sc}       % Theorem head font % (default is \mdseries)
+{.}               % Punctuation after theorem head % default: no punctuation
+{ }               % Space after theorem head
+{}                % Theorem head spec
+\theoremstyle{TheoremStyle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                 %
+%                bibtex [1] -> 1.                 %
+%                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{MyBibCount}
+\makeatletter
+    \renewcommand{\@biblabel}[1]{\theMyBibCount.\stepcounter{MyBibCount}}
+\makeatother
+%\setlength{\biblabelsep}{0.3em} % control white space bibliography with bibtex
+
+% \renewcommand\contentsname{Reference}
+% \renewcommand\bibname{Reference}
+% \renewcommand{\bibsection}{\subsection*{Reference, typeset as un-numbered subsection.}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                 %
+%                 russian aliases                 %
+%                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{proposition}{Предложение}
+\newtheorem{definition}{Определение}
+\newtheorem{theorem}{Теорема}
+
+\addto\captionsrussian{
+    \def\bibname{Список использованных источников}
+    \def\contentsname{Содержание}
+    }
+
+% https://tex.stackexchange.com/questions/67506/newcommand-vs-declaremathoperator
+% \DeclareMathOperator{\End}{End}
+% \DeclareMathOperator*{\Max}{Max}
+
+% https://es.overleaf.com/learn/latex/Pgfplots_package
+\pgfplotsset{compat=1.9}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titlespacing*{\chapter}{0pt}{-30pt}{30pt}
+
+\input{Essay}
+\setcounter{page}{2}
+\pagebreak
+
+\tableofcontents
+\thispagestyle{fancy}
+
+\input{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\vspace*{11cm}
+\centerline{\LARGE\sc\textbf{Основная часть}}
+\thispagestyle{empty}
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titlespacing*{\chapter}{0pt}{-50pt}{30pt}
+\input{Theory}
+\input{Practic}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titlespacing*{\chapter}{0pt}{-30pt}{30pt}
+\input{Conclusion}
+\input{References}
+\input{Supplement}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

@@ -1,0 +1,477 @@
+\section{Обобщенная постановка краевой задачи на собственные значения. Свойства спектра}
+\label{section:WeakSetting}
+
+\par
+В дальнейших рассмотрениях будем предполагать,
+что
+допустимое распределение площади поперечных сечений $u$ является элементом 
+множества
+\[
+U = 
+\left\{
+a \in L^\infty(I) : \;
+\alpha \leq a(x) \leq \beta
+\right\}.
+\]
+Здесь $L^\infty(I)$ обозначает пространство всех измеримых существенно ограниченных функций,
+определенных на отрезке $[0,1]$,
+а параметры $\alpha$ и $\beta$ задают ограничение на возможные значения площади поперечного сечения вдоль пролета.
+%
+%
+%
+Предполагается, что
+$0 < \alpha < \beta < +\infty$.
+%
+%
+%
+Также будем считать,
+что
+$e, \rho \in L^\infty(I)$ и, кроме того, справедливы неравенства
+\[
+e(x) \geq e_0,
+\qquad
+\rho(x) \geq \rho_0,
+\]
+где $e_0, \rho_0$~--- некоторые положительные постоянные.
+%
+%
+%
+\par
+Обобщенная постановка краевой задачи на собственные значения
+\eqref{BeamVibrating:ClassicalSetting}, $(\mathrm{BC}_i^j)$ имеет следующий вид:
+найти пару $(\lambda, y) \in \mathbb{R} \times (V \setminus \{ \vartheta \})$ такую, что
+\begin{equation}
+\label{BeamVibrating:WeakSetting}
+\int_0^1 eu^\nu y'' z'' \, dx
+=
+\lambda
+\int_0^1 \rho u y z \, dx,
+\qquad
+z \in V.
+\end{equation}
+%
+%
+%
+Здесь $V = V_i^j$ обозначает некоторое подпространство пространства Соболева
+(конкретный вид которого будет представлен далее),
+называемое \textbf{\emph{пространством состояний}},
+отвечающее краевым условиям $(\mathrm{BC}_i^j)$,
+которые, в свою очередь, соответствуют заданному типу крепления балки,
+а
+$\vartheta$~--- нулевой элемент этого пространства.
+%
+%
+%
+Заметим,
+что
+\eqref{BeamVibrating:WeakSetting} представляет собой интегральное тождество,
+справедливое для всех элементов $z$ пространства $V$.
+%
+%
+%
+\par
+Введем понятие пространства Соболева
+\cite{book:OneDimVarProblems}.
+%
+%
+%
+Пусть $C^2([0, 1])$ обозначает пространство всех дважды непрерывно дифференцируемых функций,
+определенных на отрезке $[0, 1]$.
+%
+%
+%
+Для элемента $y$ этого пространства введем норму по формуле
+\begin{equation}
+\label{SobolevNorm}
+\lVert
+y
+\rVert_{H^2(I)}
+=
+\left(\int_0^1 \left( |y|^2 + |y'|^2 + |y''|^2 \right) \, dx\right)^{1/2}.
+\end{equation}
+%
+%
+%
+\begin{definition}
+Замыкание $C^2([0, 1])$ по норме
+\eqref{SobolevNorm}
+обозначается через $H^2(I)$ и называется \emph{\textbf{пространством Соболева}}.
+\end{definition}
+%
+%
+%
+Как следует из
+\cite{book:Fichera},
+реализации пространства $V$,
+отвечающие рассматриваемым типам закрепления балки,
+имеют следующий вид:
+\[
+\begin{aligned}
+V_0^0 &= \left\{
+z \in H^2(I) : \;
+z(0) = z(1) = 0
+\right\},
+\\
+V_0^1 &= \left\{
+z \in H^2(I) : \;
+z(0) = z(1) = z'(1) = 0
+\right\},
+\\
+V_1^1 &= \left\{
+z \in H^2(I) : \;
+z(0) = z'(0) = z(1) = z'(1) = 0
+\right\},
+\\
+V_1^2 &= \left\{
+z \in H^2(I) : \;
+z(0) = z'(0) = 0
+\right\}.
+\end{aligned}
+\]
+%
+%
+%
+\par
+Через $L^2(I)$ будем обозначать пространство Лебега, состоящее из измеримых функций $y$,
+квадраты которых являются суммируемыми,
+т.\,е.
+для которых
+конечен следующий интеграл
+\[
+\int_0^1 y^2 \, dx.
+\]
+Напомним,
+что норма элемента $y$ в пространстве $L^2(I)$
+определяется формулой
+\[
+\lVert y \rVert_{L^2(I)} = \sqrt{\int_0^1 y^2 \, dx}.
+\]
+%
+%
+%
+\par
+Определим билинейные формы 
+\[
+\begin{aligned}
+\mathcal{A}_u &: V \times V \to \mathbb{R},
+\\
+\mathcal{B}_u &: L^2(I) \times L^2(I) \to \mathbb{R},
+\end{aligned}
+\]
+задаваемые формулами
+\[
+\begin{aligned}
+\mathcal{A}_u(y, z) &= \int_0^1 eu^\nu y'' z'' \, dx,
+\\
+\mathcal{B}_u(y, z) &= \int_0^1 \rho u y z \, dx.
+\end{aligned}
+\]
+%
+%
+%
+Используя введенные обозначения,
+перепишем
+\eqref{BeamVibrating:WeakSetting}
+в следующем виде:
+\[
+\mathcal{A}_u(y, z) = \lambda \mathcal{B}_u(y, z),
+\qquad
+z \in V.
+\]
+%
+%
+%
+Для того чтобы выяснить вопрос о существовании собственных значений задачи \eqref{BeamVibrating:WeakSetting},
+необходимо исследовать свойства введенных билинейных форм.
+%
+%
+%
+Пусть $H$~--- пространство Гильберта, $C : H \times H \to \mathbb{R}$~--- билинейная форма,
+а
+$\lVert \cdot \rVert_H$ обозначает норму в пространстве $H$.
+%
+%
+%
+Напомним следующие определения.
+%
+%
+%
+\begin{definition}
+Билинейная форма $C$ называется \emph{\textbf{ограниченной}},
+если найдется положительная постоянная $\hat{c}$
+такая, что
+для любых элементов $y, z \in H$ выполняется неравенство
+\[
+|C(y, z)|
+\leq
+\hat{c} \lVert y \rVert_H \lVert z \rVert_H.
+\]
+\end{definition}
+%
+%
+%
+\begin{definition}
+Билинейная форма $C$ называется \emph{\textbf{коэрцитивной}},
+если найдется положительная постоянная $\check{c}$
+такая, что
+для любого элемента $z \in H$ справедливо неравенство
+\[
+|C(z, z)|
+\geq
+\check{c} \lVert z \rVert_H^2.
+\]
+\end{definition}
+%
+%
+%
+\begin{proposition}
+Билинейные формы $\mathcal{A}_u$, $\mathcal{B}_u$
+являются ограниченными и коэрцитивными.
+\end{proposition}
+%
+%
+%
+\begin{proof}
+Напомним, что
+\[
+\rho \in L^\infty(I),
+\qquad
+u(x) \leq \beta.
+\]
+Тогда
+\begin{equation}
+\label{B:Boundedness}
+|\mathcal{B}_u(y, z)|
+=
+\left|\int_0^1 \rho u y z \, dx
+\right|
+\leq
+\int_0^1 \rho u |y z| \, dx
+\leq
+\beta
+\lVert \rho \rVert_{L^\infty(I)}  \int_0^1 |y z| \, dx.
+\end{equation}
+Воспользовавшись известным неравенством Коши\nobreakdash-Буняковского
+\cite{book:Kolmogorov,book:IP}
+\[
+\int_0^1 |y z| \, dx
+\leq
+\lVert y \rVert_{L^2(I)}
+\lVert z \rVert_{L^2(I)},
+\]
+перепишем \eqref{B:Boundedness} в виде
+\[
+|\mathcal{B}_u(y, z)|
+\leq
+\beta
+\lVert \rho \rVert_{L^\infty(I)}
+\lVert y \rVert_{L^2(I)}
+\lVert z \rVert_{L^2(I)}.
+\]
+Следовательно, билинейная форма $\mathcal{B}_u$ является ограниченной.
+%
+%
+%
+Аналогично получаем
+\[
+|\mathcal{A}_u(y, z)| = 
+\left|
+\int_0^1 eu^\nu y'' z'' \, dx
+\right|
+\leq
+\int_0^1 eu^\nu |y'' z''| \, dx
+\leq 
+\beta^\nu
+\lVert e \rVert_{L^\infty(I)}
+\int_0^1 |y'' z''| \, dx.
+\]
+Снова применяя неравенство Коши\nobreakdash-Буняковского
+теперь для выражения
+\[
+\int_0^1 |y'' z''| \, dx,
+\]
+заключаем,
+что
+\[
+|\mathcal{A}_u(y, z)|
+\leq
+\beta^\nu
+\lVert e \rVert_{L^\infty(I)}
+\lVert y'' \rVert_{L^2(I)}
+\lVert z'' \rVert_{L^2(I)}.
+\]
+Очевидно,
+что
+\[
+\lVert y'' \rVert_{L^2(I)}
+=
+\sqrt{\int_0^1 |y''|^2 \, dx}
+\leq
+\left(\int_0^1 \left( |y|^2 + |y'|^2 + |y''|^2 \right) \, dx\right)^{1/2}
+= \lVert y \rVert_{H^2(I)}.
+\]
+Таким образом,
+\[
+|\mathcal{A}_u(y, z)|
+\leq
+\beta^\nu
+\lVert e \rVert_{L^\infty(I)}
+\lVert y \rVert_{H^2(I)}
+\lVert z \rVert_{H^2(I)},
+\]
+т.\,е.
+билинейная форма
+$\mathcal{A}_u$ является ограниченной.
+%
+%
+%
+Поскольку
+\[
+\rho(x) \geq \rho_0,
+\qquad
+u(x) \geq \alpha,
+\]
+то
+\[
+\mathcal{B}_u(z, z)
+=
+\int_0^1 \rho u z^2 \, dx
+\geq
+\alpha \rho_0
+\int_0^1 z^2 \, dx
+=
+\alpha \rho_0 \lVert z \rVert_{L^2(I)}^2,
+\]
+что означает коэрцитивность билинейной формы $\mathcal{B}_u$,
+так как
+$\alpha, \rho_0 > 0$.
+%
+%
+%
+Коэрцитивность билинейной формы $\mathcal{A}_u$ для всех рассматриваемых реализаций пространства $V$
+показана в
+\cite{book:Fichera}.
+\end{proof}
+%
+%
+%
+Ограниченность и коэрцитивность билинейных форм
+$\mathcal{A}_u$ и $\mathcal{B}_u$ означает справедливость следующего известного утверждения.
+%
+%
+%
+\begin{theorem}
+Задача
+\eqref{BeamVibrating:WeakSetting}
+имеет счетное множество собственных чисел
+\[
+0 < \lambda_1[u] \leq \lambda_2[u] \leq \ldots
+\leq 
+\lambda_k[u] \leq \ldots,
+\qquad
+\lim_{k \to \infty} \lambda_k[u] = +\infty
+\]
+и соответствующую последовательность собственных функций $\{ y_k \}$,
+образующую ортогональный базис в $V$ и $L^2(I)$.
+%
+%
+%
+Кроме того, справедлив следующий вариационный принцип:
+\begin{equation}
+\label{FirstEigenvalue:VariationalPrinciple}
+\lambda_1[u]
+=
+\min_{y \in V \setminus \{ \vartheta \}} \frac{\mathcal{A}_u(y,y)}{\mathcal{B}_u(y,y)}
+=
+\frac{\mathcal{A}_u(y_1,y_1)}{\mathcal{B}_u(y_1,y_1)}.
+\end{equation}
+%
+%
+%
+Наконец, каждое собственное значение
+$\lambda_k[u]$ имеет конечную кратность.
+\end{theorem}
+%
+%
+%
+\noindent\emph{Доказательство} теоремы приводится в \cite{book:Litvinov}.
+%
+%
+%
+\par
+Отметим,
+что в литературе по механике (см., например,
+\cite{book:Banichuk}) вариационное представление
+\eqref{FirstEigenvalue:VariationalPrinciple}
+первого собственного значения $\lambda_1[u]$
+принято называть \emph{\textbf{вариационным принципом Рэлея}}.
+%
+%
+%
+Вместе с тем выражение
+\[
+\frac{\mathcal{A}_u(\cdot,\cdot)}{\mathcal{B}_u(\cdot,\cdot)}
+\]
+именуют \emph{\textbf{отношением Рэлея}}.
+%
+%
+%
+Вариационный принцип Рэлея означает,
+что для любого ненулевого элемента $z$ из пространства состояний
+$V$ выполняется неравенство
+\[
+\lambda_1[u]
+=
+\frac{\mathcal{A}_u(y_1,y_1)}{\mathcal{B}_u(y_1,y_1)}
+\leq
+\frac{\mathcal{A}_u(z,z)}{\mathcal{B}_u(z,z)},
+\]
+которое также можно записать в следующем виде:
+\[
+\lambda_1[u]
+=
+\frac
+{\int_0^1 eu^\nu |y_1''|^2 \, dx}
+{\int_0^1 \rho u y_1^2 \, dx}
+\leq
+\frac
+{\int_0^1 eu^\nu |z''|^2 \, dx}
+{\int_0^1 \rho u z^2 \, dx}.
+\]
+%
+%
+%
+%
+%
+\par
+Что касается кратности собственных значений 
+задачи
+\eqref{BeamVibrating:WeakSetting},
+то
+в действительности, как следует из
+\cite{article:FourthOrderOscillations},
+справедлива следующая
+\begin{theorem}
+Все собственные значения задачи
+\eqref{BeamVibrating:WeakSetting}
+являются простыми,
+т.\,е.
+\[
+0 < \lambda_1[u] < \lambda_2[u] < \ldots
+<
+\lambda_k[u] < \ldots.
+\]
+\end{theorem}
+%
+%
+%
+В дальнейшем нам также понадобятся свойства собственных функций
+задачи
+\eqref{BeamVibrating:WeakSetting}
+(см. \cite{article:FourthOrderOscillations}).
+\begin{theorem}
+Собственная функция,
+соответствующая первому собственному значению задачи
+\eqref{BeamVibrating:WeakSetting},
+не меняет знака на интервале $I$.
+\end{theorem}
