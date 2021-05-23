@@ -1,7 +1,6 @@
 \documentclass[oneside,a4paper,14pt,final]{extreport}
 
 \usepackage{essay}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                 %
 %              declare math operators             %
@@ -9,9 +8,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % https://tex.stackexchange.com/questions/67506/newcommand-vs-declaremathoperator
 % \DeclareMathOperator{\End}{End}
-% \DeclareMathOperator*{\Max}{Max}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\lh}{Likelihood}
 
 \graphicspath{ {./graphics/} }
+\addbibresource{./chapters/library.bib}
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -25,16 +27,20 @@
 \newpage
 \vspace*{11cm}
 \centerline{\LARGE\sc\textbf{Основная часть}}
-\thispagestyle{empty} % unnumbered page
+\thispagestyle{empty}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{./chapters/Theory}
 \input{./chapters/Practic}
 \input{./chapters/Conclusion}
-\input{./chapters/References}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% https://tex.stackexchange.com/questions/179691/removing-underline-from-journal-title-when-using-hyperref
+\normalem % remove underline
+\printbibliography[heading=bibintoc,title={Список использованных источников}]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{./chapters/Supplement}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% pic example
+pic example
 \begin{figure}[ht]
 \centering
     \begin{subfigure}[b]{0.3\textwidth}

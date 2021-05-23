@@ -3,6 +3,7 @@
 \usepackage[russian]{babel}
 
 \usepackage{amssymb,amsfonts,amsmath,amsthm}
+\usepackage{dsfont} % \mathds{R}
 \usepackage{hyperref}
 
 % packeges for table
@@ -77,7 +78,7 @@
 % subsection text styling
 \titlecontents{subsection}[3.5cm]            % indentation
 {\addvspace{10pt}\normalsize\normalfont}     % spacing and font options for subsections
-{\contentslabel[\thecontentslabel]{1.25cm}}  % subsection number
+{\contentslabel[\thecontentslabel]{1.25cm}}  % section number
 {}
 {\normalfont\;\titlerule*[.5pc]{.}\;\thecontentspage} % page number
 []
@@ -177,14 +178,18 @@
 %                      bibtex                     %
 %                                                 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% bibtex [1] -> 1
-\newcounter{MyBibCount}
-\makeatletter
-    \renewcommand{\@biblabel}[1]{\theMyBibCount.\stepcounter{MyBibCount}}
-\makeatother
+\usepackage{csquotes}
+\usepackage[backend=biber]{biblatex}
+
+
+% %% --- The following two lines are what needs to be added --- %%%
+% \setcounter{biburlnumpenalty}{9000}
+% \setcounter{biburlucpenalty}{9000}
+% \setcounter{biburllcpenalty}{9000}
+
 
 %\setlength{\biblabelsep}{0.3em} % control white space bibliography with bibtex
-\addto\captionsrussian{\def\bibname{Список использованных источников}}
+
 
 % \renewcommand\contentsname{Reference}
 % \renewcommand\bibname{Reference}
