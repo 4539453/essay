@@ -321,9 +321,10 @@ loss-функция для окна размера K выглядит так:
 \begin{equation}
 \begin{aligned}
  & \argmax_{\theta} \prod_{(i,c)\in D} p((i,c)\in D;\theta) \prod_{(i,c)\in D'} 1-p((i',c')\in D;\theta) = \\
- = & \argmax_{\theta} \left[\sum_{(i,c)\in D} \log{p((i,c)\in D;\theta)} \sum_{(i,c)\in D'} \log{( 1-p((i',c')\in D;\theta))} \right] = \\
- = & \argmax_{\theta} \sum_{(i,c)\in D} \left[\log{\frac{1}{1+\exp{(-\tilde{w}_c^{\top} w_i)}}} \sum_{(i,c')\in D'} \log{\frac{1}{1+\exp{(\tilde{w}_{c'}^{\top} w_i)}}} \right] = \\
- = & \argmax_{\theta} \sum_{(i,c)\in D} \left[\log\sigma(\tilde{w}_c^{\top} w_i) \sum_{(i,c')\in D'} \log\sigma(-\tilde{w}_{c'}^{\top} w_i)\right]
+ = & \argmax_{\theta} \left[\sum_{(i,c)\in D} \log{p((i,c)\in D;\theta)} + \sum_{(i,c)\in D'} \log{(
+1-p((i',c')\in D;\theta))} \right] = \\
+ = & \argmax_{\theta} \sum_{(i,c)\in D} \left[\log{\frac{1}{1+\exp{(-\tilde{w}_c^{\top} w_i)}}} + \sum_{(i,c')\in D'} \log{\frac{1}{1+\exp{(\tilde{w}_{c'}^{\top} w_i)}}} \right] = \\
+ = & \argmax_{\theta} \sum_{(i,c)\in D} \left[\log\sigma(\tilde{w}_c^{\top} w_i) + \sum_{(i,c')\in D'} \log\sigma(-\tilde{w}_{c'}^{\top} w_i)\right]
 \end{aligned}
 \end{equation}
 
