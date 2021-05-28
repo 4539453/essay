@@ -5,7 +5,6 @@
 \usepackage{amssymb,amsfonts,amsmath,amsthm}
 \usepackage{dsfont} % \mathds{R}
 
-
 % packeges for table
 \usepackage{makecell}
 \usepackage{multirow}
@@ -26,7 +25,7 @@
 \usepackage[left=2.5cm,top=2cm,right=2cm,bottom=2cm]{geometry}
 \usepackage{indentfirst}        % indentation for first paragraph
 \setlength\parindent{1.25cm}     % paragraph indentation
-\linespread{1.3}                % 1.5 interval
+% \linespread{1.3}                % 1.5 interval
 \frenchspacing                  % pretty space length
 \sloppy                         % pretty line breaking
 
@@ -122,6 +121,13 @@
 }]
 }
 
+\newcommand*\NonNumberedSection{%
+\titleformat{\section}[display]
+{
+	\filcenter\normalsize\normalfont\bfseries
+}{\pagebreak}{-22pt}{}
+}
+
 % chapter title styling
 % vertical space after numbered title
 \titlespacing*{\chapter}{0pt}{-40pt}{1cm}
@@ -141,7 +147,7 @@
 \titleformat{\section}[display]
 {
 	\filcenter\normalsize\normalfont\bfseries
-}{\newpage}{-22pt}{\thesection.\;}
+}{\pagebreak}{-22pt}{\thesection.\;}
 
 % subsection title styling
 \titlespacing*{\subsection}{0pt}{0pt}{22pt}
