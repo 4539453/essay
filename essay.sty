@@ -4,7 +4,7 @@
 
 \usepackage{amssymb,amsfonts,amsmath,amsthm}
 \usepackage{dsfont} % \mathds{R}
-\usepackage{hyperref}
+
 
 % packeges for table
 \usepackage{makecell}
@@ -23,10 +23,10 @@
 %             general page settings               %
 %                                                 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage[left=2.5cm,top=2cm,right=1.5cm,bottom=2cm]{geometry}
+\usepackage[left=2.5cm,top=2cm,right=2cm,bottom=2cm]{geometry}
 \usepackage{indentfirst}        % indentation for first paragraph
-\setlength\parindent{1.5cm}     % paragraph indentation
-% \linespread{1.3}                % 1.5 interval
+\setlength\parindent{1.25cm}     % paragraph indentation
+\linespread{1.3}                % 1.5 interval
 \frenchspacing                  % pretty space length
 \sloppy                         % pretty line breaking
 
@@ -62,8 +62,8 @@
 
 % chapter text styling
 \titlecontents{chapter}[1.25cm]              % indentation
-{\addvspace{10pt}\large\normalfont\bfseries} % spacing and font options for chapters
-{}                                           % chapter number
+{\addvspace{10pt}\normalsize\normalfont\bfseries} % spacing and font options for chapters
+{}  % chapter number
 {}
 {\normalsize\normalfont\bfseries\;\titlerule*[.5pc]{.}\;\thecontentspage} % page number
 
@@ -83,8 +83,16 @@
 {\normalfont\;\titlerule*[.5pc]{.}\;\thecontentspage} % page number
 []
 
-\setcounter{tocdepth}{2}                     % depth of TOC tree
-\addto\captionsrussian{\def\contentsname{Содержание}}
+% subsubsection text styling
+\titlecontents{subsubsection}[4.25cm]            % indentation
+{\addvspace{10pt}\normalsize\normalfont}     % spacing and font options for subsections
+{\contentslabel[\thecontentslabel]{1.25cm}}  % section number
+{}
+{\normalfont\;\titlerule*[.5pc]{.}\;\thecontentspage} % page number
+[]
+
+\setcounter{tocdepth}{3}                     % depth of TOC tree
+\addto\captionsrussian{\def\contentsname{СОДЕРЖАНИЕ}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                 %
@@ -93,33 +101,63 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage[compact]{titlesec}
 
+% hyperref is loaded after titlesec, as actually recommended in hyperref's manual
+\usepackage{hyperref}
+
+% section number from 1.1 -> 1
+\renewcommand{\thesection}{\arabic{section}}
+
+% command for centering chapter heading (ОСНОВНАЯ ЧАСТЬ ...)
+\newcommand*\CenterChapterHeading{%
 % chapter title styling
 % vertical space after numbered title
-\titlespacing*{\chapter}{0pt}{-50pt}{30pt}
+\titlespacing*{\chapter}{0pt}{11cm}{0pt}
 % vertical space after unnumbered title
-\titlespacing*{name=\chapter, numberless}{0pt}{-30pt}{30pt}
+\titlespacing*{name=\chapter, numberless}{0pt}{11cm}{0pt}
 \titleformat{\chapter}[display]
 {}{}{0pt}
 {
-	\Large\filcenter\sc\bfseries
+	\filcenter\Large\normalfont\bfseries
 }[{
-	\vspace{3pt}
-	\titlerule[1.5pt]
+}]
+}
+
+% chapter title styling
+% vertical space after numbered title
+\titlespacing*{\chapter}{0pt}{-40pt}{1cm}
+% vertical space after unnumbered title
+\titlespacing*{name=\chapter, numberless}{0pt}{-22pt}{1cm}
+\titleformat{\chapter}[display]
+{}{}{0pt}
+{
+	\filcenter\normalsize\normalfont\bfseries
+}[{
+% 	\vspace{3pt}
+% 	\titlerule[1.5pt]
 }]
 
 % section title styling
-\titlespacing*{\section}{0pt}{*1}{*4}
+\titlespacing*{\section}{0pt}{0pt}{22pt}
 \titleformat{\section}[display]
 {
-	\centering\sc\bfseries
-}{}{0pt}{\thesection.\;}
+	\filcenter\normalsize\normalfont\bfseries
+}{\newpage}{-22pt}{\thesection.\;}
 
 % subsection title styling
-\titlespacing*{\subsection}{0pt}{*1}{*4}
+\titlespacing*{\subsection}{0pt}{0pt}{22pt}
 \titleformat{\subsection}[display]
 {
 	\centering\sc\bfseries
-}{}{0pt}{\thesubsection.\;}
+}{}{12pt}{\thesubsection.\;}
+
+% subsubsection title styling
+\titlespacing*{\subsubsection}{0pt}{0pt}{22pt}
+\titleformat{\subsubsection}[display]
+{
+	\centering\sc\bfseries
+}{}{12pt}{\thesubsubsection.\;}
+
+\setcounter{secnumdepth}{3} % depth of counter
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                 %
@@ -150,12 +188,12 @@
 \usepackage[tableposition=top]{caption}
 \usepackage{subcaption} % for more detailed captions
 % \DeclareCaptionLabelFormat: #1 — standart lable text, #2  - number of pic/table
-\DeclareCaptionLabelFormat{gostfigure}{Рисунок #2}
+\DeclareCaptionLabelFormat{gostfigure}{Рис. #2}
 \DeclareCaptionLabelFormat{gosttable}{Таблица #2}
 \DeclareCaptionLabelSeparator{gost}{~---~}
 \captionsetup{labelsep=gost}
 \captionsetup[figure]{labelformat=gostfigure}
-\captionsetup[table]{labelformat=gosttable}
+\captionsetup[table]{justification=raggedleft,singlelinecheck=off}
 % cyrillic representation of subfigure captions: (а), (б), ...
 \renewcommand{\thesubfigure}{\asbuk{subfigure}}
 
@@ -180,20 +218,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{csquotes}
 \usepackage[backend=biber, style=gost-numeric, citestyle=numeric, sorting=ynt]{biblatex}
-
-
-% %% --- The following two lines are what needs to be added --- %%%
-% \setcounter{biburlnumpenalty}{9000}
-% \setcounter{biburlucpenalty}{9000}
-% \setcounter{biburllcpenalty}{9000}
-
-
-%\setlength{\biblabelsep}{0.3em} % control white space bibliography with bibtex
-
-
-% \renewcommand\contentsname{Reference}
-% \renewcommand\bibname{Reference}
-% \renewcommand{\bibsection}{\subsection*{Reference, typeset as un-numbered subsection.}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                 %

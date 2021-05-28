@@ -25,19 +25,24 @@
 
 \input{./chapters/Introduction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\CenterChapterHeading\chapter*{ОСНОВНАЯ ЧАСТЬ}
+\addcontentsline{toc}{chapter}{ОСНОВНАЯ ЧАСТЬ}
 \newpage
-\vspace*{11cm}
-\centerline{\LARGE\sc\textbf{Основная часть}}
-\thispagestyle{empty}
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{./chapters/Theory}
 \input{./chapters/Practic}
 \input{./chapters/Conclusion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % https://tex.stackexchange.com/questions/179691/removing-underline-from-journal-title-when-using-hyperref
-\normalem % remove underline
-\printbibliography[heading=bibintoc,title={Список использованных источников}]
+{\normalem % remove underline
+\printbibliography[heading=bibintoc,title={СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}]
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\CenterChapterHeading\chapter*{ПРИЛОЖЕНИЯ}
+\addcontentsline{toc}{chapter}{ПРИЛОЖЕНИЯ}
+\newpage
+}
 \input{./chapters/Supplement}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
