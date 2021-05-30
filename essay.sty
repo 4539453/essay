@@ -212,7 +212,9 @@
 \makeatletter
     \AddEnumerateCounter{\asbuk}{\@asbuk}{м)}
 \makeatother
-\setlist{nolistsep}
+
+\setlist{nolistsep, itemsep=6pt plus 2pt minus 2pt}
+
 \renewcommand{\labelitemi}{-}
 \renewcommand{\labelenumi}{\asbuk{enumi})}
 \renewcommand{\labelenumii}{\arabic{enumii})}
