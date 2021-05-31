@@ -15,6 +15,7 @@
 
 \graphicspath{ {./graphics/} }
 \addbibresource{./chapters/library.bib}
+\addtocategory{SourcesGOST}{gagar,Kirill,elmoru,Nikolenko,avia,Semina,atex}
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -35,9 +36,17 @@
 \input{./chapters/Conclusion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % https://tex.stackexchange.com/questions/179691/removing-underline-from-journal-title-when-using-hyperref
-{\normalem % remove underline
-\printbibliography[heading=bibintoc,title={СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}]
-}
+% {\normalem % remove underline
+% \printbibliography[heading=bibintoc,title={СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}]
+% }
+
+\chapter{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
+\begingroup
+\let\clearpage\relax
+\printbibliography[category=SourcesGOST, title=""]
+\vspace{-1.5cm}
+\printbibliography[notcategory=SourcesGOST, title=""]
+\endgroup
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {\CenterChapterHeading\chapter*{ПРИЛОЖЕНИЯ}
 \addcontentsline{toc}{chapter}{ПРИЛОЖЕНИЯ}

@@ -225,7 +225,9 @@
 %                                                 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{csquotes}
-\usepackage[backend=biber, style=gost-numeric, citestyle=numeric, sorting=ynt]{biblatex}
+\usepackage[backend=biber, style=gost-numeric, citestyle=numeric, sorting=nyt, defernumbers=true]{biblatex}
+\renewcommand*{\mkbibhdnamefamily}[1]{#1} % textit -> text
+\DeclareBibliographyCategory{SourcesGOST}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                 %
