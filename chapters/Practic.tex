@@ -25,13 +25,13 @@
  \item Scikit-learn
 
 
+ \item TensorFlow
+
+
  \item JavaScript
 
 
  \item HTML и CSS
-
-
-
 \end{itemize}
 
 
@@ -262,7 +262,7 @@
  \item метод опорных векторов (Support Vector Machine).
 \end{itemize}
 
-\bigskip
+\bigskip\noindent
 Схематично модели классификации представлены на рис. \ref{fig:models}.
 
 \begin{figure}[ht]
@@ -275,7 +275,7 @@
 
 \subsection{Эксперименты}
 
-
+\noindent
 Для эмоциональной модели Роберта Плутчика результаты получились следующие:
 
 \bigskip
@@ -283,14 +283,16 @@
 \caption{Значения Macro F1 меры}
 \label{tab:plutchik}
 \centering
-\begin{tabular}{ccccc}
-Macro F1 & \textbf{log reg} & \textbf{SVM} & \textbf{random forest} & \textbf{tuned random forest}\\
-\textbf{w2v} & 0.21519548 & 0.27992996 & 0.23415391 & 0.23932876\\
-\textbf{ELMO} & 0.25900211 & 0.32828541 & 0.31197309 & 0.43861588
+\begin{tabular}{|c|c|c|c|c|}
+\hline Macro F1 & \textbf{log reg} & \textbf{SVM} & \textbf{random forest} & \textbf{tuned random forest} \\
+\hline \textbf{w2v} & 0.21519548 & 0.27992996 & 0.23415391 & 0.23932876 \\
+\hline \textbf{ELMO} & 0.25900211 & 0.32828541 & 0.31197309 & 0.43861588 \\
+\hline
 \end{tabular}
 \end{table}
 
 
+\noindent
 Для эмоциональной модели Пола Экмана:
 
 \bigskip
@@ -298,9 +300,10 @@ Macro F1 & \textbf{log reg} & \textbf{SVM} & \textbf{random forest} & \textbf{tu
 \caption{Значения Macro F1 меры}
 \label{tab:ekman}
 \centering
-\begin{tabular}{ccccc}
-Macro F1 & \textbf{log reg} & \textbf{SVM} & \textbf{random forest} & \textbf{tuned random forest}\\
-\textbf{w2v} & 0.25493596 & 0.18245115 & 0.21223037 & 0.37710993 \\
-\textbf{ELMO}& 0.20242784 & 0.3007757 & 0.34183484 & 0.42405119
+\begin{tabular}{|c|c|c|c|c|}
+\hline Macro F1 & \textbf{log reg} & \textbf{SVM} & \textbf{random forest} & \textbf{tuned random forest} \\
+\hline \textbf{w2v} & 0.25493596 & 0.18245115 & 0.21223037 & 0.37710993 \\
+\hline \textbf{ELMO}& 0.20242784 & 0.3007757 & 0.34183484 & 0.42405119 \\
+\hline
 \end{tabular}
 \end{table}
