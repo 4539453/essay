@@ -50,6 +50,14 @@
 
 \setcounter{page}{2} % numbering begin from second page
 
+\fancypagestyle{supplement1}{
+\fancyhf{}
+\rhead{\thepage\\Приложение 1}}
+
+\fancypagestyle{supplement2}{
+\fancyhf{}
+\rhead{\thepage\\Приложение 2}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                 %
 %                   TOC styling                   %
@@ -194,9 +202,9 @@
 \usepackage[tableposition=top]{caption}
 \usepackage{subcaption} % for more detailed captions
 % \DeclareCaptionLabelFormat: #1 — standart lable text, #2  - number of pic/table
-\DeclareCaptionLabelFormat{gostfigure}{Рис. #2}
-\DeclareCaptionLabelFormat{gosttable}{Таблица #2}
-\DeclareCaptionLabelSeparator{gost}{~---~}
+\DeclareCaptionLabelFormat{gostfigure}{Рис. #2.}
+\DeclareCaptionLabelFormat{gosttable}{Таблица #2.}
+\DeclareCaptionLabelSeparator{gost}{~}
 \captionsetup{labelsep=gost}
 \captionsetup[figure]{labelformat=gostfigure}
 \captionsetup[table]{justification=raggedleft,singlelinecheck=off}
@@ -218,6 +226,14 @@
 \renewcommand{\labelitemi}{-}
 \renewcommand{\labelenumi}{\asbuk{enumi})}
 \renewcommand{\labelenumii}{\arabic{enumii})}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                 %
+%           pic and equation numbering            %
+%                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\numberwithin{figure}{section}
+\numberwithin{equation}{section}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                 %
