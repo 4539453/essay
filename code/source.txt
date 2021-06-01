@@ -1,0 +1,187 @@
+#######################################
+#                                     #
+#              html                   #
+#                                     #
+#######################################
+
+<div class="text">
+  {{text1}} <b>{{text2}}</b> {{text3}}
+</div>
+
+<div class="first-scale">  {{field type="radio" name="isneutral" value="neutral" label="Нейтральное"
+hotkey="d" class="neutral"}}
+  {{field type="radio" name="isneutral" value="notneutral" label="Есть эмоциии" hotkey="f" class="notneutral"}}
+</div>
+
+<div class="second-scale" style="display: none;">
+  {{field type="checkbox" name="anger" label="гнев / <b>злость</b> / досада" class="block"}}
+  {{field type="checkbox" name="pl_anticipation" label="настороженность / <b>интерес</b> / предвкушение" class="block"}}
+  {{field type="checkbox" name="joy"  label="восторг / <b>радость</b> / безмятежность" class="block"}}
+  {{field type="checkbox" name="pl_trust" label="восхищение / <b>доверие</b> / принятие" class="block"}}
+  {{field type="checkbox" name="fear" label="ужас / <b>страх</b> / тревога" class="block"}}
+  {{field type="checkbox" name="surprise" label="изумление / <b>удивление</b> / возбуждение" class="block"}}
+  {{field type="checkbox" name="sadness" label="горе / <b>грусть</b> / печаль" class="block"}}
+  {{field type="checkbox" name="disgust" label="отвращение / <b>неудовольствие</b> / скука" class="block"}}
+  {{field type="checkbox" name="ek_contempt" label="презрение" class="block"}}
+</div>
+
+#######################################
+#                                     #
+#               js                    #
+#                                     #
+#######################################
+
+exports.Task = extend(TolokaHandlebarsTask, function(options) {
+    TolokaHandlebarsTask.call(this, options);
+}, {
+    validate: function(solution) {
+        var isIlliterate = solution.output_values['isneutral'] === 'notneutral',
+            isMainEmo = solution.output_values['anger'] ||
+                        solution.output_values['fear'] ||
+                        solution.output_values['surprise'] ||
+                        solution.output_values['sadness'] ||
+                        solution.output_values['disgust'] ||
+                        solution.output_values['joy'],
+            errorSelected = isMainEmo ||
+                            solution.output_values['ek_contempt'] ||
+                            solution.output_values['pl_anticipation'] ||
+                            solution.output_values['pl_trust']
+
+        if (isIlliterate && !errorSelected) {
+            return {
+                task_id: this.getTask().id,
+                errors: {
+                    '__TASK__': {
+                        message: "Пожалуйста, выберите эмоции"
+                    }
+                }
+            };
+        } else {
+            return TolokaHandlebarsTask.prototype.validate.apply(this, arguments);
+        }
+    },
+    setSolution: function(solution) {
+        var secondScale = this.getDOMElement().querySelector('.second-scale');
+
+        secondScale.style.display = solution.output_values.isneutral === 'notneutral' ? 'block' : 'none';
+
+        TolokaHandlebarsTask.prototype.setSolution.call(this, solution);
+    },
+    onRender: function() {
+        // DOM-элемент задания сформирован (доступен через #getDOMElement()) 
+    },
+    onDestroy: function() {
+        // Задание завершено, можно освобождать (если были использованы) глобальные ресурсы
+    }
+});
+
+function extend(ParentClass, constructorFunction, prototypeHash) {
+    constructorFunction = constructorFunction || function() {};
+    prototypeHash = prototypeHash || {};
+    if (ParentClass) {
+        constructorFunction.prototype = Object.create(ParentClass.prototype);
+    }
+    for (var i in prototypeHash) {
+        constructorFunction.prototype[i] = prototypeHash[i];
+    }
+    return constructorFunction;
+}
+
+#######################################
+#                                     #
+#               css                   #
+#                                     #
+#######################################
+
+.text {
+  max-width: 690px;
+  padding: 10px;
+  background-color: #F2F2F2;
+  white-space: pre-line;
+}
+.block {
+  display: block;
+}
+
+#######################################
+#                                     #
+#              input 1                #
+#                                     #
+#######################################
+
+{
+	"text1": {
+		"type": "string",
+		"hidden": false,
+		"required": false
+	},
+	"text2": {
+		"type": "string",
+		"hidden": false,
+		"required": false
+	},
+	"text3": {
+		"type": "string",
+		"hidden": false,
+		"required": false
+	}
+}
+
+#######################################
+#                                     #
+#               input 2               #
+#                                     #
+#######################################
+
+{
+	"fear": {
+		"type": "boolean",
+		"hidden": false,
+		"required": false
+	},
+	"anger": {
+		"type": "boolean",
+		"hidden": false,
+		"required": false
+	},
+	"disgust": {
+		"type": "boolean",
+		"hidden": false,
+		"required": false
+	},
+	"sadness": {
+		"type": "boolean",
+		"hidden": false,
+		"required": false
+	},
+	"surprise": {
+		"type": "boolean",
+		"hidden": false,
+		"required": false
+	},
+	"isneutral": {
+		"type": "string",
+		"hidden": false,
+		"required": true
+	},
+	"ek_contempt": {
+		"required": false,
+		"type": "boolean",
+		"hidden": false
+	},
+	"joy": {
+		"required": false,
+		"type": "boolean",
+		"hidden": false
+	},
+	"pl_anticipation": {
+		"required": false,
+		"type": "boolean",
+		"hidden": false
+	},
+	"pl_trust": {
+		"required": false,
+		"type": "boolean",
+		"hidden": false
+	}
+}

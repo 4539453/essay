@@ -56,48 +56,4 @@
 }
 \input{./chapters/Supplement}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-pic example
-\begin{figure}[ht]
-\centering
-    \begin{subfigure}[b]{0.3\textwidth}
-    \centering
-        $$\begin{array}{l}
-        F \to x \;|\; y \;|\; (S) \\
-        T \to F \;|\; T \ast F \\
-        S \to T \;|\; S + T \\
-        \end{array}$$
-        \caption{}
-    \end{subfigure} %
-    \begin{subfigure}[b]{0.6\textwidth}
-    \centering
-        \includegraphics[scale=0.5]{look-track.png}
-        \caption{}
-    \end{subfigure}
-
-    \caption{(a) Арифметические выражения;
-             (б) Look R96 2016.}
-    \label{fig_parsetree}
-\end{figure}
-
-
-% table example
-\begin{table}[ht]
-\caption{Расчет параметров}
-\label{tab_weight}
-\centering
-    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
-    \hline \multirow{2}{*}{Параметр $x_i$} & \multicolumn{4}{c|}{Параметр $x_j$} &
-        \multicolumn{2}{c|}{Первый шаг} & \multicolumn{2}{c|}{Второй шаг} \\
-    \cline{2-9} & $X_1$ & $X_2$ & $X_3$ & $X_4$ & $w_i$ &
-        ${K_\text{в}}_i$ & $w_i$ & ${K_\text{в}}_i$ \\
-    \hline $X_1$ & 1 & 1 & 1.5 & 1.5 & 5 & 0.31 & 19 & 0.32 \\
-    \hline $X_2$ & 1 & 1 & 1.5 & 1.5 & 5 & 0.31 & 19 & 0.32 \\
-    \hline $X_3$ & 0.5 & 0.5 & 1 & 0.5 & 2.5 & 0.16 & 9.25 & 0.16 \\
-    \hline $X_4$ & 0.5 & 0.5 & 1.5 & 1 & 3.5 & 0.22 & 12.25 & 0.20 \\
-    \hline \multicolumn{5}{|c|}{Итого:} & 16 & 1 & 59.5 & 1 \\
-    \hline
-    \end{tabular}
-\end{table}
-
 \end{document}
