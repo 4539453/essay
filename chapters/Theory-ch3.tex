@@ -98,7 +98,7 @@
 расстояния Кульбака-Лейблера. Оно задается формулой:
 
 \begin{equation}
- KL(P||Q) = \int\log\frac{dP}{dQ}dP,
+ KL(P||Q) = \int\ln\frac{dP}{dQ}dP,
 \end{equation}
 
 , где $P$ --- истинное распределение, а $Q$ --- приближенное. Для дискретного случая:
@@ -111,8 +111,8 @@
 
 \begin{equation}
 \begin{aligned}
- KL(P||Q) & = \sum_y p(y)\log\frac{p(y)}{q(y)} = \\
- & = \sum_y p(y) \log p(y) - \sum_y p(y) \log q(y) = - H(p) + H(p,q),
+ KL(P||Q) & = \sum_y p(y)\ln\frac{p(y)}{q(y)} = \\
+ & = \sum_y p(y) \ln p(y) - \sum_y p(y) \ln q(y) = - H(p) + H(p,q),
 \end{aligned}
 \end{equation}
 
@@ -120,7 +120,7 @@
 нам нужно минимизировать $H(p, q)$. Для бинарной классификации loss-функция будет выглядеть так:
 
 \begin{equation} \label{eq:logLoss}
- L(w)= H(p_{data}, q(w)) = -\frac{1}{N}\sum_{i=1}^N(y_i\log\hat y_i(w) + (1-y_i)\log(1-\hat y_i(w)))
+ L(w)= H(p_{data}, q(w)) = -\frac{1}{N}\sum_{i=1}^N(y_i\ln\hat y_i(w) + (1-y_i)\ln(1-\hat y_i(w)))
 \end{equation}
 
 где $p_{data}$ --- распределение наших данных, $q(w)$ --- апостериорное распределение,  $\hat y_i(w)$ ---

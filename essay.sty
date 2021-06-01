@@ -17,7 +17,7 @@
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.9}
 
-\newcommand\eref[1]{(\ref{#1})}
+\usepackage{pdfpages} % for pdf inserting
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                 %
 %             general page settings               %
@@ -49,7 +49,7 @@
     \fancyhf{}
     \rhead{\thepage}}
 
-\setcounter{page}{2} % numbering begin from second page
+% \setcounter{page}{2} % numbering begin from second page
 
 \fancypagestyle{supplement1}{
 \fancyhf{}
